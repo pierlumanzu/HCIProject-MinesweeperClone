@@ -14,7 +14,7 @@ Below the functions provided by the application are described.
 
 - Create a new game: the user can create a new game with different grid characteristics: he can choose between three difficulty type (Beginner, Intermediate, Expert) or he can create a personal grid through the Custom mode.
 
-- Save, load or delete the games: everytime the user can save a match in progress, load a saved game or delete some unnecessary saved ones.
+- Save, load or delete the games: the user can save a match in progress, load a saved game or delete some unnecessary saved ones every time he wants.
 
 - Rankings: for the three difficulty type (Beginner, Intermediate, Expert) there are the rankings (one for each type). Only the first 20 best times are shown in each ranking. If the user does a new record, the application leads the user to insert his name in the rigth ranking.
 
