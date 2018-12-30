@@ -15,7 +15,7 @@ class ButtonModel(QObject):#Button Model.
         self._X = X                                     #This variable indicates the position on the horizontal axis on the grid.
         self._Y = Y                                     #This variable indicates the position on the vertical axis on the grid.
         self._isMines = isMines                         #This variable indicates if the button is a mines.
-        self._value = None                          #This variable indicates the button value.
+        self._value = None                              #This variable indicates the button value.
         self._isClicked = False                         #This variable indicates if the button is clicked.
         self._isChecked = False                         #This variable indicates if the button is checked.
         self._isActive = True                           #This variable indicates if the button is active.
