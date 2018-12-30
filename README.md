@@ -33,4 +33,8 @@ The Operating System used for the project development is Ubuntu. If you want to 
 
 ##### Images Example
 
-![The Grid Game](imageExampleGame.png)
+###### The game grid
+![](imageExampleGame.png)
+
+###### The game rankings
+![](imageExampleRankings.png)
