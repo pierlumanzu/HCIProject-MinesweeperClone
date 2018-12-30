@@ -335,6 +335,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         self._ui.actionNew.setEnabled(False)
         self._ui.actionSaveAs.setEnabled(False)
         self._ui.actionLoad.setEnabled(False)
+        self._ui.actionDelete.setEnabled(False)
         if os.path.exists("DataSaved/AutoSavedGames/AutoSave.pkl"):
             os.remove("DataSaved/AutoSavedGames/AutoSave.pkl")
         self._model.activeThread = False
@@ -406,6 +407,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         self._ui.actionNew.setEnabled(False)
         self._ui.actionSaveAs.setEnabled(False)
         self._ui.actionLoad.setEnabled(False)
+        self._ui.actionDelete.setEnabled(False)
         if os.path.exists("DataSaved/AutoSavedGames/AutoSave.pkl"):
             os.remove("DataSaved/AutoSavedGames/AutoSave.pkl")
         with open(fileGame, "rb") as input:
