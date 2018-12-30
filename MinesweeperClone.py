@@ -430,7 +430,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
                     self._model.gameTime = time.time()
                     timeLcd = self._ui.lcdTime.value()
 
-    def autosave(self):#This function does the autosave of the game when a grid button is clicked or after 5 seconds.
+    def autosave(self):#This function does the autosave of the game when a grid button is clicked or every 5 seconds.
         countTime = 0
         while self._model.appIsAliveObservable.value and self._model.activeThread:
             time.sleep(1)
