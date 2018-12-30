@@ -31,7 +31,7 @@ The needed packages to play this Minesweeper game are:
 
 The Operating System used for the project development is Ubuntu. If you want to use the application on an other Operating System(like Windows), you need to modify the files path in the project code: the inserting path policies are different depending on the used Operating System.
 
-##### Images Example
+##### Example Images
 
 ###### The game grid
 ![](imageExampleGame.png)
