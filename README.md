@@ -1,1 +1,1 @@
-# HCIProject-Minesweeper-Clone
+# HCIProject-MinesweeperClone
