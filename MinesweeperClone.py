@@ -205,7 +205,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             self._model.isPropagation = True
 
         else:
-            #If the clicked button is not a mines, the program controls the neighbor buttons.
+            #If the clicked button is not a mine, the program controls the neighbor buttons.
             listNeighbors = []
             listNeighbors.append([tuplePositionPoint[0], tuplePositionPoint[1]])
 
@@ -222,10 +222,10 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
                     for j in range(x - 1, x + 2):
 
                         if (j != x or i != y) and i >= 0 and i < self._model.H and j >= 0 and j < self._model.W:
-                            if self._model.getItemModelsGridButtons(i * self._model.W + j).isMines:
+                            if self._model.getItemModelsGridButtons(i * self._model.W + j).isMine:
                                 countMines += 1
 
-                #If a button has a mines in its neighborhood, it is not inserted in the list of the buttons to control.
+                #If a button has any mines in its neighborhood, it is not inserted in the list of the buttons to control.
                 if countMines == 0:
                     self._model.getItemModelsGridButtons(y * self._model.W + x).value = ""
                     for i in range(y - 1, y + 2):
@@ -240,14 +240,14 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             self._model.isPropagation = True
             self._model.isBlocked = False
 
-    def checkLoose(self, tuplePositionPoint):#If the clicked button is a mines, the user looses and consequently all the mines are showed. The checked mines are characterized by a green background, the others by a red one.
-        if self._model.getItemModelsGridButtons(tuplePositionPoint[1] * self._model.W + tuplePositionPoint[0]).isMines:
+    def checkLoose(self, tuplePositionPoint):#If the clicked button is a mine, the user looses and consequently all the mines are showed. The checked mines are characterized by a green background, the others by a red one.
+        if self._model.getItemModelsGridButtons(tuplePositionPoint[1] * self._model.W + tuplePositionPoint[0]).isMine:
 
             self._model.isLos = True
 
             for i in range(self._model.getLenModelsGridButtons()):
                 self._model.getItemModelsGridButtons(i).isActive = False
-                if self._model.getItemModelsGridButtons(i).isMines:
+                if self._model.getItemModelsGridButtons(i).isMine:
                     self._model.getItemModelsGridButtons(i).isClicked = True
                     self._model.getItemModelsGridButtons(i).value = "M"
 
@@ -260,7 +260,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         countRightPointsClicked = 0
         for i in range(self._model.getLenModelsGridButtons()):
 
-            if not(self._model.getItemModelsGridButtons(i).isMines) and self._model.getItemModelsGridButtons(i).isClicked:
+            if not(self._model.getItemModelsGridButtons(i).isMine) and self._model.getItemModelsGridButtons(i).isClicked:
                 countRightPointsClicked += 1
 
         if countRightPointsClicked == self._model.W * self._model.H - self._model.mines:
@@ -273,7 +273,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
 
             for i in range(self._model.getLenModelsGridButtons()):
                 self._model.getItemModelsGridButtons(i).isActive = False
-                if self._model.getItemModelsGridButtons(i).isMines:
+                if self._model.getItemModelsGridButtons(i).isMine:
                     self._model.getItemModelsGridButtons(i).isChecked = True
                     self._model.getItemModelsGridButtons(i).isClicked = True
             self._ui.statusbar.setStyleSheet("color:green; font-size: 14pt;")
@@ -396,7 +396,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         vectorToSave.append([])
         for i in range(self._model.getLenModelsGridButtons()):
             button = self._model.getItemModelsGridButtons(i)
-            vectorToSave[2].append([button.X, button.Y, button.isMines, button.value, button.isChecked, button.isClicked, button.isActive])
+            vectorToSave[2].append([button.X, button.Y, button.isMine, button.value, button.isChecked, button.isClicked, button.isActive])
 
         with open(fileGame, "wb") as output:
             pickle.dump(vectorToSave, output)

@@ -10,18 +10,18 @@ class ButtonModel(QObject):#Button Model.
     adviseChecked = pyqtSignal(bool)
     valueChanged = pyqtSignal(str)
 
-    def __init__(self, X, Y, isMines, **kwargs):
+    def __init__(self, X, Y, isMine, **kwargs):
         super().__init__(**kwargs)
         self._X = X                                     #This variable indicates the position on the horizontal axis on the grid.
         self._Y = Y                                     #This variable indicates the position on the vertical axis on the grid.
-        self._isMines = isMines                         #This variable indicates if the button is a mines.
+        self._isMine = isMine                           #This variable indicates if the button is a mine.
         self._value = None                              #This variable indicates the button value.
         self._isClicked = False                         #This variable indicates if the button is clicked.
         self._isChecked = False                         #This variable indicates if the button is checked.
         self._isActive = True                           #This variable indicates if the button is active.
 
-    def loadButton(self, isMines, value, isChecked, isClicked, isActive):    #This function leads to the possibility of loading some characteristics of a button. It is used in the cases when a user decides to load a game.
-        self._isMines = isMines
+    def loadButton(self, isMine, value, isChecked, isClicked, isActive):    #This function leads to the possibility of loading some characteristics of a button. It is used in the cases when a user decides to load a game.
+        self._isMine = isMine
         self.value = value
         self._isChecked = isChecked
         self._isClicked = isClicked
@@ -38,8 +38,8 @@ class ButtonModel(QObject):#Button Model.
         return self._Y
 
     @property
-    def isMines(self):
-        return self._isMines
+    def isMine(self):
+        return self._isMine
 
     @property
     def value(self):
@@ -115,8 +115,8 @@ class ButtonViewController(QPushButton):#Button View/Controller.
             else:
                 self._model.isChecked = True
 
-    def setStyleSheetCell(self):                     #If a button is clicked and it is a mines, the button background color becomes red. Else if it is not a mines, the background color becomes gray. The background color green is used to indicate if a button is a mines and is checked by the user.
-        if self._model.isMines:
+    def setStyleSheetCell(self):                     #If a button is clicked and it is a mine, the button background color becomes red. Else if it is not a mine, the background color becomes gray. The background color green is used to indicate if a button is a mine and is checked by the user.
+        if self._model.isMine:
             if self._model.isChecked:
                 self.setStyleSheet("background-color:green;")
             else:
