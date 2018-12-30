@@ -1,4 +1,4 @@
-# HCI Project-PhotoGlue
+# HCI Project-MinesweeperClone
 ### A Minesweeper game created through Pyqt5.
 
 ##### Objective of the project
