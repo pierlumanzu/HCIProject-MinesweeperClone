@@ -269,7 +269,10 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             if self._ui.lcdTime.value() == 0:
                 totalTime = 0
             else:
-                totalTime = self._ui.lcdTime.value() + (time.time() - self._model.gameTime)
+                if self._ui.lcdTime.value() == 99999:
+                    totalTime = 99999
+                else:
+                    totalTime = self._ui.lcdTime.value() + (time.time() - self._model.gameTime)
 
             for i in range(self._model.getLenModelsGridButtons()):
                 self._model.getItemModelsGridButtons(i).isActive = False
@@ -427,7 +430,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             if self._model.isBlocked:
                 self._ui.lcdTime.display(timeLcd)
             else:
-                if not(self._model.isWin) and not(self._model.isLos):
+                if not(self._model.isWin) and not(self._model.isLos) and timeLcd < 99999:
                     self._ui.lcdTime.display(self._ui.lcdTime.value() + 1)
                     self._model.gameTime = time.time()
                     timeLcd = self._ui.lcdTime.value()
