@@ -8,6 +8,7 @@ from Ui_SuccessSaveDialog import Ui_SuccessSaveDialog               #SuccesSaveD
 from Ui_AutoSaveDialog import Ui_AutoSaveDialog                     #AutoSaveDialog View.
 from Ui_WarningDeleteDialog import Ui_WarningDeleteDialog           #WarningDeleteDialog View.
 from Ui_RecordDialog import Ui_RecordDialog                         #RecordDialog View.
+from Ui_ControlsDialog import Ui_ControlsDialog                     #ControlsDialog View.
 
 class DialogModel(QObject):#Dialogs Model.
 
@@ -21,7 +22,7 @@ class DialogModel(QObject):#Dialogs Model.
             self._lineEditObservable = lineEditObservable             #Only the RecordDialog needs this observable. This latter one is used if a user must insert a text on the dialog.
 
         if buttonBoxObservable is None:
-            self._buttonBoxObservable = None                          #The SuccessSaveDialog does not need this observable.
+            self._buttonBoxObservable = None                          #The SuccessSaveDialog and the ControlsDialog do not need this observable.
         else:
             self._buttonBoxObservable = buttonBoxObservable           #This Observable is used to communicate if the user accepts the request of a dialog or not.
 
@@ -62,6 +63,17 @@ class SuccessSaveDialog(QDialog):#SuccessSaveDialog Controller.
         self._model = DialogModel()
 
         self._ui = Ui_SuccessSaveDialog()
+        self._ui.setupUi(self)
+
+class ControlsDialog(QDialog):#ControlsDialog Controller.
+
+    def __init__(self):
+
+        super().__init__()
+
+        self._model = DialogModel()
+
+        self._ui = Ui_ControlsDialog()
         self._ui.setupUi(self)
 
 class AutoSaveDialog(QDialog):#AutoSaveDialog Controller.

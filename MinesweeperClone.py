@@ -17,7 +17,7 @@ from NewDialog import NewDialog
 from SaveAsDialog import SaveAsDialog
 from LoadDialog import LoadDialog
 from DeleteDialog import DeleteDialog
-from Dialogs import SuccessSaveDialog, AutoSaveDialog, RecordDialog
+from Dialogs import SuccessSaveDialog, AutoSaveDialog, RecordDialog, ControlsDialog
 from Observable import Observable
 
 class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
@@ -73,6 +73,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         self._ui.actionSaveAs.triggered.connect(self.openSaveAsDialog)
         self._ui.actionLoad.triggered.connect(self.openLoadDialog)
         self._ui.actionDelete.triggered.connect(self.openDeleteDialog)
+        self._ui.actionControls.triggered.connect(self.openControlsDialog)
 
         if buttons is not None:
             for i in range(len(buttons)):
@@ -320,7 +321,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
     def openNewGameDialog(self): #If the user wants to create a new grid, the application refreshes the grid and all the related widgets.
 
         isChangedAnything = Observable(False)
-        refreshValue = self._model.isBlocked
+        blockedValue = self._model.isBlocked
         self._model.isBlocked = True
         self.setEnabled(False)
         self.setHidden(True)
@@ -331,7 +332,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         if isChangedAnything.value:
             self.refreshGrid()
         else:
-            self._model.isBlocked = refreshValue
+            self._model.isBlocked = blockedValue
 
     def refreshGrid(self):
         self._ui.refreshButton.setEnabled(False)
@@ -351,7 +352,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
     #SAVE/LOAD/DELETE DIALOG/FUNCTIONS
 
     def openSaveAsDialog(self):#The user can save a game with this dialog.
-        refreshValue = self._model.isBlocked
+        blockedValue = self._model.isBlocked
         self._model.isBlocked = True
         gameToSave = Observable(None)
         self.setEnabled(False)
@@ -359,15 +360,15 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         dialog = SaveAsDialog(gameToSave)
         dialog.exec_()
         if gameToSave.value is not None:
-            self.saveGameAs("DataSaved/SavedGames/" + gameToSave.value + ".pkl", refreshValue)
+            self.saveGameAs("DataSaved/SavedGames/" + gameToSave.value + ".pkl", blockedValue)
             dialog = SuccessSaveDialog()
             dialog.exec_()
-        self._model.isBlocked = refreshValue
+        self._model.isBlocked = blockedValue
         self.setEnabled(True)
         self.setHidden(False)
 
     def openLoadDialog(self):#The user can load a saved game with this dialog.
-        refreshValue = self._model.isBlocked
+        blockedValue = self._model.isBlocked
         self._model.isBlocked = True
         gameToLoad = Observable(None)
         self.setEnabled(False)
@@ -378,10 +379,10 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         self.setHidden(False)
         if gameToLoad.value is not None:
             self.loadGame("DataSaved/SavedGames/" + gameToLoad.value + ".pkl")
-        self._model.isBlocked = refreshValue
+        self._model.isBlocked = blockedValue
 
     def openDeleteDialog(self):#The user can delete some saved games with this dialog.
-        refreshValue = self._model.isBlocked
+        blockedValue = self._model.isBlocked
         self._model.isBlocked = True
         self.setEnabled(False)
         self.setHidden(True)
@@ -389,14 +390,14 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         dialog.exec_()
         self.setEnabled(True)
         self.setHidden(False)
-        self._model.isBlocked = refreshValue
+        self._model.isBlocked = blockedValue
 
-    def saveGameAs(self, fileGame, refreshValue):#Save function.
+    def saveGameAs(self, fileGame, blockedValue):#Save function.
         if os.path.exists(fileGame):
             os.remove(fileGame)
         vectorToSave = []
         vectorToSave.append([self._model.W, self._model.H, self._model.mines, self._model.rankingType])
-        vectorToSave.append([self._ui.lcdTime.value(), self._model.counterMines, self._model.isWin, self._model.isLos, refreshValue, [self._ui.centralwidget.x(), self._ui.centralwidget.y(), self._ui.centralwidget.width(), self._ui.centralwidget.height()]])
+        vectorToSave.append([self._ui.lcdTime.value(), self._model.counterMines, self._model.isWin, self._model.isLos, blockedValue, [self._ui.centralwidget.x(), self._ui.centralwidget.y(), self._ui.centralwidget.width(), self._ui.centralwidget.height()]])
         vectorToSave.append([])
         for i in range(self._model.getLenModelsGridButtons()):
             button = self._model.getItemModelsGridButtons(i)
@@ -421,6 +422,19 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
         self.close()
         window = MinesweeperClone(self._model.appIsAliveObservable, vectorLoaded[0][0], vectorLoaded[0][1], vectorLoaded[0][2], vectorLoaded[0][3], vectorLoaded[2], vectorLoaded[1])
         window.show()
+
+    #CONTROLS DIALOG
+
+    def openControlsDialog(self):
+        blockedValue = self._model.isBlocked
+        self._model.isBlocked = True
+        self.setEnabled(False)
+        self.setHidden(True)
+        dialog = ControlsDialog()
+        dialog.exec_()
+        self.setEnabled(True)
+        self.setHidden(False)
+        self._model.isBlocked = blockedValue
 
     #BACKGROUND THREADS: functions used as background threads.
 

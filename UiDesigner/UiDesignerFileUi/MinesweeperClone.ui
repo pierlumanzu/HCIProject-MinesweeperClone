@@ -105,8 +105,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>673</width>
-             <height>392</height>
+             <width>145</width>
+             <height>137</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -130,8 +130,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>631</width>
-                     <height>325</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_9"/>
@@ -155,8 +155,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>631</width>
-                     <height>325</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10"/>
@@ -180,8 +180,8 @@
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>631</width>
-                     <height>325</height>
+                     <width>98</width>
+                     <height>28</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_11"/>
@@ -225,8 +225,15 @@
     <addaction name="actionLoad"/>
     <addaction name="actionDelete"/>
    </widget>
+   <widget class="QMenu" name="menuInformations">
+    <property name="title">
+     <string>Informations</string>
+    </property>
+    <addaction name="actionControls"/>
+   </widget>
    <addaction name="menuGame"/>
    <addaction name="menuActions"/>
+   <addaction name="menuInformations"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew">
@@ -247,6 +254,11 @@
   <action name="actionDelete">
    <property name="text">
     <string>Delete...</string>
+   </property>
+  </action>
+  <action name="actionControls">
+   <property name="text">
+    <string>Controls</string>
    </property>
   </action>
  </widget>
