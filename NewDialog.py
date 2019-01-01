@@ -27,7 +27,7 @@ class NewDialog(QDialog):#NewDialog Controller.
             self._model.W = int(self._ui.widthBeginner.text())
             self._model.H = int(self._ui.heightBeginner.text())
             self._model.mines = int(self._ui.minesBeginner.text())
-            self._model.typeRanking = 0
+            self._model.rankingType = 0
             self._model.isChangedAnythingObservable.value = True
         else:
             if self._ui.intermediateButton.isChecked():
@@ -35,7 +35,7 @@ class NewDialog(QDialog):#NewDialog Controller.
                 self._model.W = int(self._ui.widthIntermediate.text())
                 self._model.H = int(self._ui.heightIntermediate.text())
                 self._model.mines = int(self._ui.minesIntermediate.text())
-                self._model.typeRanking = 1
+                self._model.rankingType = 1
                 self._model.isChangedAnythingObservable.value = True
             else:
                 if self._ui.expertButton.isChecked():
@@ -43,7 +43,7 @@ class NewDialog(QDialog):#NewDialog Controller.
                     self._model.W = int(self._ui.widthExpert.text())
                     self._model.H = int(self._ui.heightExpert.text())
                     self._model.mines = int(self._ui.minesExpert.text())
-                    self._model.typeRanking = 2
+                    self._model.rankingType = 2
                     self._model.isChangedAnythingObservable.value = True
                 else:
                     if self._ui.customButton.isChecked():
@@ -53,7 +53,7 @@ class NewDialog(QDialog):#NewDialog Controller.
                         if self._model.W * self._model.H <= self._ui.minesCustom.value():           #The mines number must always be less than the product between the width and the height of the grid.
                             self._ui.minesCustom.setValue(self._model.W * self._model.H - 1)
                         self._model.mines = self._ui.minesCustom.value()
-                        self._model.typeRanking = 3
+                        self._model.rankingType = 3
                         self._model.isChangedAnythingObservable.value = True
                     else:
                         if self._ui.scrollAreaWidgetContents.layout().count() == 3:
@@ -65,5 +65,5 @@ class NewDialog(QDialog):#NewDialog Controller.
         self._model.modelMinesweeper.W = self._model.W
         self._model.modelMinesweeper.H = self._model.H
         self._model.modelMinesweeper.mines = self._model.mines
-        self._model.modelMinesweeper.rankingType = self._model.typeRanking
+        self._model.modelMinesweeper.rankingType = self._model.rankingType
         self.close()

@@ -133,8 +133,12 @@ class RecordDialog(QDialog):#RecordDialog Controller.
         self._ui.buttonBox.rejected.connect(self.rejectRecord)
 
     def acceptRecord(self):
-        self._model.buttonBoxObservable.value = True
-        self._model.lineEditObservable.value = self._ui.nameRecord.text().replace(" ", "")
+        if len(self._ui.nameRecord.text()) != 0:
+            self._model.buttonBoxObservable.value = True
+            self._model.lineEditObservable.value = self._ui.nameRecord.text().replace(" ", "")
+        else:
+            self._model.buttonBoxObservable.value = True
+            self._model.lineEditObservable.value = "unknown"
 
     def rejectRecord(self):
         self._model.buttonBoxObservable.value = False

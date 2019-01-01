@@ -26,9 +26,9 @@ class MinesweeperCloneModel(QObject):#MinesweeperClone Model.
         if rankings is None:
             self._rankings = [[], [], []]
         else:
-            self._rankings = rankings
+            self._rankings = rankings                        #This vector is used to contain the rankings.
         self._gameTime = 0                                   #This variable is used to compute the game time of a winner user.
-        self._activeThread = True                            #The background threads need this variable. Before game refreshing/loading, this variable is setted as False and consequently the background threads related to the current game must stop. After the game refreshing/loading, the background threads related to the new game session are created.
+        self._activeThread = True                            #The background threads need this variable. Before the game refreshing/loading, this variable is setted as False and consequently the background threads related to the current game must stop. After the game refreshing/loading, the background threads related to the new game session are created.
 
     @property
     def appIsAliveObservable(self):

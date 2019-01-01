@@ -53,7 +53,7 @@ class DeleteDialog(QDialog):#DeleteDialog Controller.
                     countGameChecked += 1
                     if countGameChecked == 1:
                         isDelete = Observable(False)
-                        # A dialog that asks to the user if he wants the imminent elimination of some selected games.
+                        # A dialog asks to the user if he wants the imminent elimination of some selected games.
                         dialog = WarningDeleteDialog(isDelete)
                         dialog.exec_()
                         if not(isDelete.value):

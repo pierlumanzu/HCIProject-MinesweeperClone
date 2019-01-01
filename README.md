@@ -8,7 +8,7 @@ Below the functions provided by the application are described.
 
 ##### Functions
 
-- The game: the application provides the game grid. If a button which is a mine is clicked, the user looses the game. On the contrary, if all the non clicked buttons are mines the user wins. There is also the possibility to check a button if the user think that it is a mine.
+- The game: the application provides the game grid. If a button which is a mine is clicked, the user looses the game. On the contrary, if all the non clicked buttons are mines the user wins. There is also the possibility to check a button if the user thinks that it is a mine.
 
 - Refresh Button: if the user wants to start another match with the same grid characteristics, he can press the refresh button.
 
@@ -18,7 +18,7 @@ Below the functions provided by the application are described.
 
 - Rankings: for the three difficulty type (Beginner, Intermediate, Expert) there are the rankings (one for each type). Only the first 20 best times are shown in each ranking. If the user does a new record, the application leads the user to insert his name in the rigth ranking.
 
-- Autosave: a game in progress is saved every five seconds or after clicking a grid button.
+- Autosave: a game in progress is saved every 5 seconds or after clicking a grid button.
 
 ##### Packages Installation
 
@@ -29,7 +29,7 @@ The needed packages to play this Minesweeper game are:
 
 ##### Important notes
 
-The Operating System used for the project development is Ubuntu. If the user wants to use the application on an other Operating System(like Windows), he needs to modify the files path in the project code: the path inserting policies are different depending on the used Operating System.
+The Operating System used for the project development is Ubuntu. If the user wants to use the application on an other Operating System (like Windows), he needs to modify the files path in the project code: the path inserting policies are different depending on the used Operating System.
 
 ##### Example Images
 

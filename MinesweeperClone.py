@@ -12,7 +12,7 @@ import pickle
 import os
 
 from MinesweeperCloneModel import MinesweeperCloneModel
-from Cell import ButtonModel, ButtonViewController
+from Button import ButtonModel, ButtonViewController
 from NewDialog import NewDialog
 from SaveAsDialog import SaveAsDialog
 from LoadDialog import LoadDialog
@@ -34,10 +34,10 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             rankings = None
 
         if W is None and H is None and mines is None and rankingType is None and buttons is None and parameters is None:
-            #When the application is started, it try to find a file containing an autosave of the last played game.
+            #When the application is started, it tries to find a file containing an autosave of the last played game.
             if os.path.exists("DataSaved/AutoSavedGames/AutoSave.pkl"):
                 isAutoLoading = Observable(False)
-                #If the file exixts, a dialog appears and the user has the possibility to choice between the loading of the last played game or the creation of a new game grid.
+                #If the file exixts, a dialog appears and the user has the possibility to choice between the loading of the last played game and the creation of a new game grid.
                 dialog = AutoSaveDialog(isAutoLoading)
                 dialog.exec_()
                 if isAutoLoading.value:
@@ -284,12 +284,12 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             self._ui.statusbar.showMessage("You Win!")
             self._model.counterMines = 0
 
-            #The maximum number of rankings positions are 20. So if the considered ranking are not already full, the user can insert his record; else if his game time is less than the last position one, the user does a new record; else the user does not have the possibility to insert his game time on the ranking.
+            #The maximum number of rankings positions are 20. So if the considered ranking is not already full, the user can insert his record; else if his game time is less than the last position one, the user does a new record; else the user does not have the possibility to insert his game time on the ranking.
             if self._model.rankingType != 3:
                 if self._model.getLenRanking(self._model.rankingType) < 20 or totalTime < self._model.getMaxRanking(self._model.rankingType):
                     isRecord = Observable(False)
                     nameRecord = Observable(None)
-                    # A dialog that gives the possibility to a user who does a new record to insert his name.
+                    # A dialog gives the possibility to a user who does a new record to insert his name.
                     dialog = RecordDialog(totalTime, isRecord, nameRecord)
                     dialog.exec_()
                     #If there is a new record in the ranking, the rankings-related file is updated.
@@ -345,7 +345,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             os.remove("DataSaved/AutoSavedGames/AutoSave.pkl")
         self._model.activeThread = False
         time.sleep(1.5)
-        #This time sleep is needed because the background threads related to this current game must be closed before the game refreshing.
+        #This sleep time is needed because the background threads related to the current game must be closed before the game refreshing.
         self.close()
         window = MinesweeperClone(self._model.appIsAliveObservable, self._model.W, self._model.H, self._model.mines, self._model.rankingType)
         window.show()
@@ -420,7 +420,7 @@ class MinesweeperClone(QMainWindow):#MinesweeperClone Controller.
             vectorLoaded = pickle.load(input)
         self._model.activeThread = False
         time.sleep(1.5)
-        # This time sleep is needed because the background threads related to this game session must be closed before the game loading.
+        # This sleep time is needed because the background threads related to the game session must be closed before the game loading.
         self.close()
         window = MinesweeperClone(self._model.appIsAliveObservable, vectorLoaded[0][0], vectorLoaded[0][1], vectorLoaded[0][2], vectorLoaded[0][3], vectorLoaded[2], vectorLoaded[1])
         window.show()
